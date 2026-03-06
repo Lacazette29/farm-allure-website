@@ -14,16 +14,19 @@ const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}});
 },{threshold:0.08});
 document.querySelectorAll('.sr').forEach(el=>obs.observe(el));
+
+// All videos: autoplay muted, loop. Mute btn toggles sound.
+const MUTE_ICO=`<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`;
+const VOL_ICO=`<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>`;
 document.querySelectorAll('.vid-wrap').forEach(wrap=>{
   const video=wrap.querySelector('video');
-  const muteBtn=wrap.querySelector('.vid-mute-btn');
-  const overlay=wrap.querySelector('.vid-overlay');
-  const MUTE_ICON=`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`;
-  const VOL_ICON=`<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>`;
-  video.muted=true;video.loop=true;
-  overlay.addEventListener('click',()=>{video.play();wrap.classList.add('playing')});
-  muteBtn.addEventListener('click',e=>{
-    e.stopPropagation();video.muted=!video.muted;
-    muteBtn.innerHTML=video.muted?MUTE_ICON:VOL_ICON;
+  const btn=wrap.querySelector('.vid-mute-btn');
+  video.muted=true;video.loop=true;video.autoplay=true;video.playsInline=true;
+  video.play().catch(()=>{});
+  btn.innerHTML=MUTE_ICO;
+  btn.addEventListener('click',e=>{
+    e.stopPropagation();
+    video.muted=!video.muted;
+    btn.innerHTML=video.muted?MUTE_ICO:VOL_ICO;
   });
 });
