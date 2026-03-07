@@ -1,11 +1,11 @@
-
 :root{--ink:#1c1209;--earth:#3b2410;--terra:#b5521b;--amber:#e8923a;--sand:#f2e8d5;--linen:#faf5ec;--leaf:#2e5435;--cream:#fffcf5}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;cursor:none}
 .cursor{width:10px;height:10px;background:var(--terra);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s}
 .cursor-ring{width:36px;height:36px;border:1.5px solid var(--terra);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .18s ease;opacity:.6}
-body::before{content:'';position:fixed;inset:0;z-index:9990;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:22px 52px;transition:background .4s,padding .4s}
 nav.scrolled{background:rgba(252,245,236,.96);backdrop-filter:blur(16px);padding:14px 52px;border-bottom:1px solid rgba(59,36,16,.1)}
 .nav-wordmark{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;letter-spacing:.05em;color:var(--cream);text-decoration:none;transition:color .4s}
@@ -33,11 +33,10 @@ nav.scrolled .nav-care{border-color:rgba(59,36,16,.2)!important;color:var(--eart
 .cta-care{display:inline-flex;align-items:center;gap:8px;background:rgba(255,252,245,.08);color:rgba(242,232,213,.8);font-size:.78rem;font-weight:400;text-decoration:none;border:1px solid rgba(242,232,213,.25);padding:13px 20px;border-radius:2px;transition:all .3s;white-space:nowrap}
 .cta-care:hover{background:rgba(255,252,245,.15);color:var(--sand)}
 .hero-right{position:relative;overflow:hidden}
-.hero-right img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;animation:fadeIn 1.2s .2s forwards}
+.hero-right img{width:100%;height:100%;object-fit:cover;display:block}
 .hero-right::after{content:'';position:absolute;left:0;top:0;bottom:0;width:80px;background:linear-gradient(to right,var(--earth),transparent)}
 .hero-badge{position:absolute;bottom:48px;left:-28px;background:var(--amber);color:white;padding:18px 24px;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;line-height:1.4;border-radius:2px;box-shadow:0 12px 40px rgba(0,0,0,.3);z-index:2;opacity:0;animation:fadeUp 1s .9s forwards}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 /* RIBBON */
 .ribbon{background:var(--terra);padding:14px 0;overflow:hidden;white-space:nowrap}
@@ -80,7 +79,7 @@ nav.scrolled .nav-care{border-color:rgba(59,36,16,.2)!important;color:var(--eart
 .drink-card:hover{box-shadow:0 24px 60px rgba(59,36,16,.14)}
 .drink-img{position:relative;overflow:hidden;height:280px}
 .drink-img-sm{position:relative;overflow:hidden;height:220px}
-.drink-img img,.drink-img-sm img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.drink-img img,.drink-img-sm img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;loading:lazy}
 .drink-card:hover .drink-img img,.drink-card:hover .drink-img-sm img{transform:scale(1.06)}
 .drink-label{position:absolute;top:16px;left:16px;background:var(--earth);color:var(--amber);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:2px;z-index:1}
 .drink-label.new{background:var(--leaf);color:white}
@@ -127,18 +126,16 @@ nav.scrolled .nav-care{border-color:rgba(59,36,16,.2)!important;color:var(--eart
 .gal-item::after{content:'';position:absolute;inset:0;background:rgba(28,18,9,0);transition:background .4s}
 .gal-item:hover::after{background:rgba(28,18,9,.18)}
 
-/* VIDEOS */
+/* VIDEOS — 4-col uniform grid */
 .videos-section{background:var(--ink);padding:100px 60px}
 .videos-header{text-align:center;margin-bottom:56px}
 .videos-header .overline{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
 .videos-header h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,4vw,3.5rem);font-weight:600;color:var(--sand)}
 .videos-header h2 em{font-style:italic;color:var(--terra)}
-.videos-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:1300px;margin:0 auto 24px}
-.videos-grid-2{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:1300px;margin:0 auto}
-.vid-wrap{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:9/16;background:#0a0a0a}
+.videos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1200px;margin:0 auto 14px}
+.videos-grid-2{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1200px;margin:0 auto}
+.vid-wrap{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:9/16;background:#111}
 .vid-wrap video{width:100%;height:100%;object-fit:cover;display:block}
-.vid-mute-btn{position:absolute;bottom:10px;right:10px;background:rgba(28,18,9,.65);border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:white;backdrop-filter:blur(6px);transition:background .3s;z-index:10}
-.vid-mute-btn:hover{background:rgba(181,82,27,.85)}
 
 /* PRICES */
 .prices{background:var(--cream);padding:110px 60px}
@@ -203,7 +200,7 @@ footer{background:var(--ink);padding:72px 60px 40px}
 .sr.in{opacity:1;transform:none}
 .sr-d1{transition-delay:.1s}.sr-d2{transition-delay:.2s}.sr-d3{transition-delay:.3s}
 
-@media(max-width:1024px){.videos-grid,.videos-grid-2{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:1024px){.videos-grid,.videos-grid-2{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){
   nav{padding:16px 24px}nav.scrolled{padding:12px 24px}
   .nav-right a:not(.nav-order):not(.nav-care){display:none}
