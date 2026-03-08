@@ -215,3 +215,25 @@ footer{background:var(--ink);padding:72px 60px 40px}
   .delivery{padding:72px 24px}.delivery-grid{grid-template-columns:1fr;gap:40px}
   footer{padding:52px 24px 32px}.footer-top{grid-template-columns:1fr 1fr;gap:32px}.footer-bottom{flex-direction:column;text-align:center}
 }
+
+/* BULK BANNER */
+.bulk-banner{background:var(--earth);padding:48px 60px}
+.bulk-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.bulk-tag{display:inline-block;font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.bulk-text h3{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:600;color:var(--sand);margin-bottom:8px}
+.bulk-text p{font-size:.88rem;font-weight:300;color:rgba(242,232,213,.6);max-width:480px;line-height:1.7}
+
+/* BULK NOTE in prices */
+.bulk-note{display:flex;align-items:center;gap:12px;background:rgba(181,82,27,.08);border:1px solid rgba(181,82,27,.2);border-radius:4px;padding:16px 20px;margin-top:12px;margin-bottom:0;font-size:.85rem;color:var(--earth)}
+.bulk-note svg{flex-shrink:0;color:var(--terra)}
+.bulk-note a{color:var(--terra);font-weight:500;text-decoration:none;border-bottom:1px solid var(--terra)}
+.bulk-note a:hover{color:var(--amber);border-color:var(--amber)}
+
+/* VIDEOS — fluid grid that fills evenly */
+.videos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1200px;margin:0 auto}
+
+@media(max-width:900px){
+  .bulk-banner{padding:40px 24px}
+  .bulk-inner{flex-direction:column;align-items:flex-start}
+  .videos-grid{grid-template-columns:repeat(2,1fr)}
+}
